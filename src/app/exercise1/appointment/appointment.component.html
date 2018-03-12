@@ -1,0 +1,48 @@
+<h2>Make Appointment</h2>
+<hr />
+<div class="col-md-4">
+  <form #appointmentForm="ngForm" (ngSubmit)="onSubmit(appointmentForm.value)">
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <em *ngIf="appointmentForm.controls.description?.errors?.minlength">Min 3 characters</em>
+      <em *ngIf="appointmentForm.controls.description?.errors?.maxlength">Max 25 characters</em>
+      <em *ngIf="appointmentForm.controls.description?.errors?.required
+          && appointmentForm.controls.description?.touched">Required</em>
+      <input id="description" class="form-control" type="text" name="description" (ngModel)="description"
+        required minlength="3" maxlength="25"/>
+    </div>
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <em *ngIf="appointmentForm.controls.date?.errors?.required
+          && appointmentForm.controls.date?.touched">Required</em>
+      <input id="date" class="form-control" type="date" name="date" (ngModel)="date" required />
+    </div>
+    <div class="form-group">
+      <label for="partOfDay">Part of day:</label>
+      <div id="partOfDay">
+        <input id="am" type="checkbox" name="isAm" (ngModel)="isAm" />
+        <label for="am">AM</label>
+        <input id="pm" type="checkbox" name="isPm" (ngModel)="isPm" />
+        <label for="pm">PM</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="type">Appointment type:</label>
+      <select id="type" class="form-control" name="type" (ngModel)="type">
+        <option *ngFor="let type of types" [value]="type">{{type}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="reminder">Reminder:</label>
+      <div id="reminder">
+        <input id="yes" type="radio" value="yes" name="reminder" (ngModel)="reminder" />
+        <label for="yes">Yes</label><br />
+        <input id="no" type="radio" value="no" name="reminder" (ngModel)="reminder" />
+        <label for="no">No</label><br />
+      </div>
+    </div>
+    <button [disabled]="appointmentForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>
+

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('h67-oefening1 App', () => {
+describe('Databinding_Directives App', () => {
   let page: AppPage;
 
   beforeEach(() => {
